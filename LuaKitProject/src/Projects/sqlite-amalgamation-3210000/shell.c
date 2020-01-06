@@ -9832,7 +9832,7 @@ static void editFunc(
     sqlite3_result_error_nomem(context);
     goto edit_func_end;
   }
-  rc = system(zCmd);
+  // rc = system(zCmd);
   sqlite3_free(zCmd);
   if( rc ){
     sqlite3_result_error(context, "EDITOR returned non-zero", -1);
@@ -13436,9 +13436,9 @@ static void output_reset(ShellState *p){
 #endif
       char *zCmd;
       zCmd = sqlite3_mprintf("%s %s", zXdgOpenCmd, p->zTempFile);
-      if( system(zCmd) ){
-        utf8_printf(stderr, "Failed: [%s]\n", zCmd);
-      }
+      // if( system(zCmd) ){
+      //   utf8_printf(stderr, "Failed: [%s]\n", zCmd);
+      // }
       sqlite3_free(zCmd);
       outputModePop(p);
       p->doXdgOpen = 0;
@@ -17557,7 +17557,7 @@ static int do_meta_command(char *zLine, ShellState *p){
       zCmd = sqlite3_mprintf(strchr(azArg[i],' ')==0?"%z %s":"%z \"%s\"",
                              zCmd, azArg[i]);
     }
-    x = system(zCmd);
+    // x = system(zCmd);
     sqlite3_free(zCmd);
     if( x ) raw_printf(stderr, "System command returns %d\n", x);
   }else
