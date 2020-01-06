@@ -94,6 +94,11 @@ _weatherManager.parseWeathers = function (responseStr,callback)
 end
 
 _weatherManager.loadWeather = function (callback)
+  
+    local http = require "socket.http"
+    local res, code, headers, status = http.request([[http://wttr.in/vancouver]])
+    print(res, code, status)
+
 	lua_http.request({ url  = "http://mobile.weather.com.cn/data/forecast/101010100.html?_=1381891660081",
 		onResponse = function (response)
 			if response.http_code ~= 200 then
