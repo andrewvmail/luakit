@@ -4,6 +4,7 @@ extern "C" {
 #include "lauxlib.h"
 #include "lualib.h"
 #include "lsqlite3.h"
+#include "lua_nacl.h"
 #include "lua_cjson.h"
 #include "mobdebug.h"
 #ifdef __cplusplus
@@ -271,6 +272,7 @@ extern int luaInit(lua_State* L)
     luaopen_language(L);
     luaopen_cjson(L);
     luaopen_cjson_safe(L);
+    luaopen_nacl(L);
     luaopen_async_socket(L);
     luaopen_notification(L);
     addLuaLoader(L,luakit_loader);

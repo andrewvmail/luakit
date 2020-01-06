@@ -45,7 +45,6 @@
 		2883ADB820B5439B005E1F54 /* tolua_push.c in Sources */ = {isa = PBXBuildFile; fileRef = 2883AD8E20B5439B005E1F54 /* tolua_push.c */; };
 		2883ADB920B5439B005E1F54 /* tolua_to.c in Sources */ = {isa = PBXBuildFile; fileRef = 2883AD8F20B5439B005E1F54 /* tolua_to.c */; };
 		2883ADBA20B5439B005E1F54 /* lua_helpers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2883AD9320B5439B005E1F54 /* lua_helpers.cpp */; };
-		2883ADC320B544ED005E1F54 /* lsqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 2883ADBD20B544ED005E1F54 /* lsqlite3.c */; };
 		2883ADC420B544ED005E1F54 /* shell.c in Sources */ = {isa = PBXBuildFile; fileRef = 2883ADBF20B544ED005E1F54 /* shell.c */; };
 		2883ADC520B544ED005E1F54 /* sqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 2883ADC020B544ED005E1F54 /* sqlite3.c */; };
 		2883ADDE20B54516005E1F54 /* async_cgi_task_dispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2883ADC720B54516005E1F54 /* async_cgi_task_dispatcher.cpp */; };
@@ -98,6 +97,10 @@
 		3C8551A121B00DBB00860F2A /* options.c in Sources */ = {isa = PBXBuildFile; fileRef = 3C85518D21B00DBA00860F2A /* options.c */; };
 		3C962AD621992FF0002B91E7 /* lua_language.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3C962AC421992FF0002B91E7 /* lua_language.cpp */; };
 		3C962AD921993203002B91E7 /* languageUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3C962AD821993203002B91E7 /* languageUtil.mm */; };
+		49B9E76F23C2F17700640254 /* lsqlite3.c in Sources */ = {isa = PBXBuildFile; fileRef = 2883ADBD20B544ED005E1F54 /* lsqlite3.c */; };
+		49B9E77023C2F18800640254 /* lua_nacl.c in Sources */ = {isa = PBXBuildFile; fileRef = 49B9E74923C2EC8D00640254 /* lua_nacl.c */; };
+		49B9E77123C2F1A800640254 /* tweetnacl.c in Sources */ = {isa = PBXBuildFile; fileRef = 49B9E74A23C2EC8D00640254 /* tweetnacl.c */; };
+		49B9E77223C2F38300640254 /* devurandom.c in Sources */ = {isa = PBXBuildFile; fileRef = 49B9E74B23C2EC8D00640254 /* devurandom.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -424,6 +427,7 @@
 		49B9E74923C2EC8D00640254 /* lua_nacl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lua_nacl.c; sourceTree = "<group>"; };
 		49B9E74A23C2EC8D00640254 /* tweetnacl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tweetnacl.c; sourceTree = "<group>"; };
 		49B9E74B23C2EC8D00640254 /* devurandom.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = devurandom.c; sourceTree = "<group>"; };
+		49B9E75923C2ED7100640254 /* lua_nacl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lua_nacl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -881,6 +885,7 @@
 				49B9E74923C2EC8D00640254 /* lua_nacl.c */,
 				49B9E74A23C2EC8D00640254 /* tweetnacl.c */,
 				49B9E74B23C2EC8D00640254 /* devurandom.c */,
+				49B9E75923C2ED7100640254 /* lua_nacl.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1055,9 +1060,9 @@
 				2883ADB420B5439B005E1F54 /* print.c in Sources */,
 				2883ADB220B5439B005E1F54 /* lzio.c in Sources */,
 				2883AE6520B546C3005E1F54 /* oc_helpers.mm in Sources */,
-				2883ADC320B544ED005E1F54 /* lsqlite3.c in Sources */,
 				2883ADDF20B54516005E1F54 /* async_socket.cpp in Sources */,
 				2883AE4C20B5457A005E1F54 /* lua_http_task.cpp in Sources */,
+				49B9E77123C2F1A800640254 /* tweetnacl.c in Sources */,
 				2883AE6420B546C3005E1F54 /* oc_callback.mm in Sources */,
 				2883AE5620B5457A005E1F54 /* LuaNotificationListener.cpp in Sources */,
 				2883ADAA20B5439B005E1F54 /* lstring.c in Sources */,
@@ -1128,7 +1133,10 @@
 				2883AE4D20B5457A005E1F54 /* dtoa.c in Sources */,
 				2883AD9920B5439B005E1F54 /* ldblib.c in Sources */,
 				2883ADE120B54516005E1F54 /* base_connection.cpp in Sources */,
+				49B9E76F23C2F17700640254 /* lsqlite3.c in Sources */,
 				2883ADA820B5439B005E1F54 /* lparser.c in Sources */,
+				49B9E77223C2F38300640254 /* devurandom.c in Sources */,
+				49B9E77023C2F18800640254 /* lua_nacl.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

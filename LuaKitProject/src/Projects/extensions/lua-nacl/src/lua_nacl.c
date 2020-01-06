@@ -12,7 +12,7 @@ extern void randombytes(u8*, u64);
 
 static u8 *lua_fixedlstring(lua_State *L, int index, int len, i8 *error)
 {
-  if (!lua_isstring(L, index) || lua_rawlen(L, index) != len)
+  if (!lua_isstring(L, index) || lua_strlen(L, index) != len)
   {
     lua_pushfstring(L, error, len);
     lua_error(L);
@@ -24,7 +24,7 @@ static u8 *lua_minlstring(lua_State *L, int index, int len, u64 *l, i8 *error)
 {
   u8 *res;
   size_t slen;
-  if (!lua_isstring(L, index) || lua_rawlen(L, index) < len)
+  if (!lua_isstring(L, index) || lua_strlen(L, index) < len)
   {
     lua_pushfstring(L, error, len);
     lua_error(L);
@@ -55,7 +55,7 @@ static int lua_crypto_randombytes(lua_State *L)
   u64 xlen;
   double n;
   int isnum;
-  n = lua_tonumberx(L, 1, &isnum);
+  n = lua_tonumber(L, 1);
   if (isnum && n >= 0) {
     xlen = n;
     x = alloc_str(L, xlen);
@@ -224,7 +224,7 @@ static int lua_crypto_stream(lua_State *L)
   u64 d;
   double l;
   int isnum;
-  l = lua_tonumberx(L, 1, &isnum);
+  l = lua_tonumber(L, 1);
   if (isnum && l >= 0) {
     d = l;
   } else {
