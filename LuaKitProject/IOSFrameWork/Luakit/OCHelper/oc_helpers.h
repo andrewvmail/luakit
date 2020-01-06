@@ -31,3 +31,16 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , id params1,
 id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, id params3, id params4);
 
 id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, id params3, id params4, id params5);
+
+
+id call_lua_function(NSString * moduleName , NSString * MethodName, lua_State * L);
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params, lua_State * L);
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, lua_State * L);
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, id params3, lua_State * L);
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, id params3, id params4, lua_State * L);
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, id params3, id params4, id params5, lua_State * L);

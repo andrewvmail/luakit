@@ -410,3 +410,186 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , id params1,
     END_STACK_MODIFY(L, 0)
     return ret;
 }
+
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+// =======================================================
+
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , lua_State * L)
+{
+    if (moduleName.length <= 0 || MethodName.length <= 0) {
+        return nil;
+    }
+    // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+    BEGIN_STACK_MODIFY(L)
+    pushLuaModule(moduleName);
+    lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
+    lua_rawget(L, -2);
+    id ret = nil;
+    if (lua_isfunction(L, -1)) {
+        int err = lua_pcall(L, 0, 1, 0);
+        if (err != 0) {
+            luaError(L,"call_lua_function call error");
+        } else {
+            ret = oc_copyToObjc(L,-1);
+        }
+    }
+    END_STACK_MODIFY(L, 0)
+    return ret;
+}
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params, lua_State * L)
+{
+    if (moduleName.length <= 0 || MethodName.length <= 0) {
+        return nil;
+    }
+    // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+    BEGIN_STACK_MODIFY(L)
+    pushLuaModule(moduleName);
+    lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
+    lua_rawget(L, -2);
+    id ret = nil;
+    if (lua_isfunction(L, -1)) {
+        oc_fromObjc(L, params);
+        int err = lua_pcall(L, 1, 1, 0);
+        if (err != 0) {
+            luaError(L,"call_lua_function call error");
+        } else {
+            ret = oc_copyToObjc(L,-1);
+        }
+    } else {
+        luaError(L,"call_lua_function call error no such function");
+    }
+    END_STACK_MODIFY(L, 0)
+    return ret;
+}
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, lua_State * L)
+{
+    if (moduleName.length <= 0 || MethodName.length <= 0) {
+        return nil;
+    }
+    // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+    BEGIN_STACK_MODIFY(L)
+    pushLuaModule(moduleName);
+    lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
+    lua_rawget(L, -2);
+    id ret = nil;
+    if (lua_isfunction(L, -1)) {
+        oc_fromObjc(L, params1);
+        oc_fromObjc(L, params2);
+        int err = lua_pcall(L, 2, 1, 0);
+        if (err != 0) {
+            luaError(L,"call_lua_function call error");
+        } else {
+            ret = oc_copyToObjc(L,-1);
+        }
+    } else {
+        luaError(L,"call_lua_function call error no such function");
+    }
+    END_STACK_MODIFY(L, 0)
+    return ret;
+}
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, id params3, lua_State * L)
+{
+    if (moduleName.length <= 0 || MethodName.length <= 0) {
+        return nil;
+    }
+    // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+    BEGIN_STACK_MODIFY(L)
+    pushLuaModule(moduleName);
+    lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
+    lua_rawget(L, -2);
+    id ret = nil;
+    if (lua_isfunction(L, -1)) {
+        oc_fromObjc(L, params1);
+        oc_fromObjc(L, params2);
+        oc_fromObjc(L, params3);
+        int err = lua_pcall(L, 3, 1, 0);
+        if (err != 0) {
+            luaError(L,"call_lua_function call error");
+        } else {
+            ret = oc_copyToObjc(L,-1);
+        }
+    } else {
+        luaError(L,"call_lua_function call error no such function");
+    }
+    END_STACK_MODIFY(L, 0)
+    return ret;
+}
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, id params3, id params4, lua_State * L) {
+    if (moduleName.length <= 0 || MethodName.length <= 0) {
+        return nil;
+    }
+    // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+    BEGIN_STACK_MODIFY(L)
+    pushLuaModule(moduleName);
+    lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
+    lua_rawget(L, -2);
+    id ret = nil;
+    if (lua_isfunction(L, -1)) {
+        oc_fromObjc(L, params1);
+        oc_fromObjc(L, params2);
+        oc_fromObjc(L, params3);
+        oc_fromObjc(L, params4);
+        int err = lua_pcall(L, 4, 1, 0);
+        if (err != 0) {
+            luaError(L,"call_lua_function call error");
+        } else {
+            ret = oc_copyToObjc(L,-1);
+        }
+    } else {
+        luaError(L,"call_lua_function call error no such function");
+    }
+    END_STACK_MODIFY(L, 0)
+    return ret;
+}
+
+id call_lua_function(NSString * moduleName , NSString * MethodName , id params1, id params2, id params3, id params4, id params5, lua_State * L)
+{
+    if (moduleName.length <= 0 || MethodName.length <= 0) {
+        return nil;
+    }
+    // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+    BEGIN_STACK_MODIFY(L)
+    pushLuaModule(moduleName);
+    lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
+    lua_rawget(L, -2);
+    id ret = nil;
+    if (lua_isfunction(L, -1)) {
+        oc_fromObjc(L, params1);
+        oc_fromObjc(L, params2);
+        oc_fromObjc(L, params3);
+        oc_fromObjc(L, params4);
+        oc_fromObjc(L, params5);
+        int err = lua_pcall(L, 5, 1, 0);
+        if (err != 0) {
+            luaError(L,"call_lua_function call error");
+        } else {
+            ret = oc_copyToObjc(L,-1);
+        }
+    } else {
+        luaError(L,"call_lua_function call error no such function");
+    }
+    END_STACK_MODIFY(L, 0)
+    return ret;
+}
+
