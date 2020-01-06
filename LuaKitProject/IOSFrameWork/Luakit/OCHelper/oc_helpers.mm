@@ -430,6 +430,17 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , id params1,
 // =======================================================
 // =======================================================
 
+void pushLuaModule(NSString * moduleName, lua_State * L)
+{
+    // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+    BEGIN_STACK_MODIFY(L)
+    NSString * lua = [NSString stringWithFormat:@"TEM_OC_OBJECT = require('%@')",moduleName];
+    doString(L, [lua cStringUsingEncoding:NSUTF8StringEncoding]);
+    lua_getglobal(L, "TEM_OC_OBJECT");
+    lua_pushnil(L);
+    lua_setglobal(L, "TEM_OC_OBJECT");
+    END_STACK_MODIFY(L, 1)
+}
 
 id call_lua_function(NSString * moduleName , NSString * MethodName , lua_State * L)
 {
@@ -438,7 +449,7 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , lua_State *
     }
     // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
     BEGIN_STACK_MODIFY(L)
-    pushLuaModule(moduleName);
+    pushLuaModule(moduleName, L);
     lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
     lua_rawget(L, -2);
     id ret = nil;
@@ -461,7 +472,7 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , id params, 
     }
     // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
     BEGIN_STACK_MODIFY(L)
-    pushLuaModule(moduleName);
+    pushLuaModule(moduleName, L);
     lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
     lua_rawget(L, -2);
     id ret = nil;
@@ -487,7 +498,7 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , id params1,
     }
     // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
     BEGIN_STACK_MODIFY(L)
-    pushLuaModule(moduleName);
+    pushLuaModule(moduleName, L);
     lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
     lua_rawget(L, -2);
     id ret = nil;
@@ -514,7 +525,7 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , id params1,
     }
     // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
     BEGIN_STACK_MODIFY(L)
-    pushLuaModule(moduleName);
+    pushLuaModule(moduleName, L);
     lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
     lua_rawget(L, -2);
     id ret = nil;
@@ -541,7 +552,7 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , id params1,
     }
     // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
     BEGIN_STACK_MODIFY(L)
-    pushLuaModule(moduleName);
+    pushLuaModule(moduleName, L);
     lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
     lua_rawget(L, -2);
     id ret = nil;
@@ -570,7 +581,7 @@ id call_lua_function(NSString * moduleName , NSString * MethodName , id params1,
     }
     // lua_State * L = BusinessThread::GetCurrentThreadLuaState();
     BEGIN_STACK_MODIFY(L)
-    pushLuaModule(moduleName);
+    pushLuaModule(moduleName, L);
     lua_pushstring(L, [MethodName cStringUsingEncoding:NSUTF8StringEncoding]);
     lua_rawget(L, -2);
     id ret = nil;
