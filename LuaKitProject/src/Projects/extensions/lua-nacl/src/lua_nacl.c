@@ -1,4 +1,5 @@
 #include <lua.h>
+#include "lauxlib.h"
 #include "tweetnacl.h"
 
 typedef unsigned char u8;
@@ -317,51 +318,68 @@ static int lua_crypto_hash(lua_State *L)
   lua_pushnumber(L, x);\
   lua_rawset(L, -3);
 
+static const luaL_Reg nacllib[] = {
+   {"randombytes", lua_crypto_randombytes},
+     {"verify_16", lua_crypto_verify_16},
+     {"verify_32", lua_crypto_verify_32},
+     {"secretbox", lua_crypto_secretbox},
+     {"secretbox_open", lua_crypto_secretbox_open},
+     {"scalarmult", lua_crypto_scalarmult},
+     {"scalarmult_base", lua_crypto_scalarmult_base},
+     {"box_keypair", lua_crypto_box_keypair},
+     {"box_beforenm", lua_crypto_box_beforenm},
+     {"box_afternm", lua_crypto_secretbox},
+     {"box_afternm_open", lua_crypto_secretbox_open},
+     {"box", lua_crypto_box},
+     {"box_open", lua_crypto_box_open},
+     {"sign_keypair", lua_crypto_sign_keypair},
+     {"sign", lua_crypto_sign},
+     {"sign_open", lua_crypto_sign_open},
+     {"stream", lua_crypto_stream},
+     {"stream_xor", lua_crypto_stream_xor},
+     {"onetimeauth", lua_crypto_onetimeauth},
+     {"onetimeauth_verify", lua_crypto_onetimeauth_verify},
+     {"hash", lua_crypto_hash},
+    {NULL, NULL}
+};
+
+
 int luaopen_nacl(lua_State *L)
 {
-  lua_newtable(L);
-  FUNC("randombytes", lua_crypto_randombytes)
-  FUNC("verify_16", lua_crypto_verify_16)
-  FUNC("verify_32", lua_crypto_verify_32)
-  FUNC("secretbox", lua_crypto_secretbox)
-  FUNC("secretbox_open", lua_crypto_secretbox_open)
-  FUNC("scalarmult", lua_crypto_scalarmult)
-  FUNC("scalarmult_base", lua_crypto_scalarmult_base)
-  FUNC("box_keypair", lua_crypto_box_keypair)
-  FUNC("box_beforenm", lua_crypto_box_beforenm)
-  FUNC("box_afternm", lua_crypto_secretbox)
-  FUNC("box_afternm_open", lua_crypto_secretbox_open)
-  FUNC("box", lua_crypto_box)
-  FUNC("box_open", lua_crypto_box_open)
-  FUNC("sign_keypair", lua_crypto_sign_keypair)
-  FUNC("sign", lua_crypto_sign)
-  FUNC("sign_open", lua_crypto_sign_open)
-  FUNC("stream", lua_crypto_stream)
-  FUNC("stream_xor", lua_crypto_stream_xor)
-  FUNC("onetimeauth", lua_crypto_onetimeauth)
-  FUNC("onetimeauth_verify", lua_crypto_onetimeauth_verify)
-  /*FUNC("auth", lua_crypto_auth)
-  FUNC("auth_verify", lua_crypto_auth_verify)*/
-  FUNC("hash", lua_crypto_hash)
-  NUM("box_PUBLICKEYBYTES", crypto_box_PUBLICKEYBYTES)
-  NUM("box_SECRETKEYBYTES", crypto_box_SECRETKEYBYTES)
-  NUM("box_NONCEBYTES", crypto_box_NONCEBYTES)
-  NUM("box_BEFORENMBYTES", crypto_box_BEFORENMBYTES)
-  NUM("box_PREFIXBYTES", crypto_secretbox_PREFIXBYTES)
-  NUM("scalarmult_BYTES", crypto_scalarmult_BYTES)
-  NUM("scalarmult_SCALARBYTES", crypto_scalarmult_SCALARBYTES)
-  NUM("sign_PUBLICKEYBYTES", crypto_sign_PUBLICKEYBYTES)
-  NUM("sign_SECRETKEYBYTES", crypto_sign_SECRETKEYBYTES)
-  NUM("sign_BYTES", crypto_sign_BYTES)
-  NUM("secretbox_KEYBYTES", crypto_secretbox_KEYBYTES)
-  NUM("secretbox_NONCEBYTES", crypto_secretbox_NONCEBYTES)
-  NUM("secretbox_PREFIXBYTES", crypto_secretbox_PREFIXBYTES)
-  NUM("stream_KEYBYTES", crypto_stream_KEYBYTES)
-  NUM("stream_NONCEBYTES", crypto_stream_NONCEBYTES)
-  NUM("onetimeauth_KEYBYTES", crypto_onetimeauth_KEYBYTES)
-  NUM("onetimeauth_BYTES", crypto_onetimeauth_BYTES)
-  /*NUM("auth_KEYBYTES", crypto_auth_KEYBYTES)
-  NUM("auth_BYTES", crypto_auth_BYTES)*/
-  NUM("hash_BYTES", crypto_hash_BYTES)
+  luaL_register(L, "nacl", nacllib);
+  lua_pushnumber(L,crypto_box_SECRETKEYBYTES);
+  lua_setfield(L, -2, "box_SECRETKEYBYTES");
+  lua_pushnumber(L,crypto_box_NONCEBYTES);
+  lua_setfield(L, -2, "box_NONCEBYTES");
+  lua_pushnumber(L,crypto_box_BEFORENMBYTES);
+  lua_setfield(L, -2, "box_BEFORENMBYTES");
+  lua_pushnumber(L,crypto_secretbox_PREFIXBYTES);
+  lua_setfield(L, -2, "box_PREFIXBYTES");
+  lua_pushnumber(L,crypto_scalarmult_BYTES);
+  lua_setfield(L, -2, "scalarmult_BYTES");
+  lua_pushnumber(L,crypto_scalarmult_SCALARBYTES);
+  lua_setfield(L, -2, "scalarmult_SCALARBYTES");
+  lua_pushnumber(L,crypto_sign_PUBLICKEYBYTES);
+  lua_setfield(L, -2, "sign_PUBLICKEYBYTES");
+  lua_pushnumber(L,crypto_sign_SECRETKEYBYTES);
+  lua_setfield(L, -2, "sign_SECRETKEYBYTES");
+  lua_pushnumber(L,crypto_sign_BYTES);
+  lua_setfield(L, -2, "sign_BYTES");
+  lua_pushnumber(L,crypto_secretbox_KEYBYTES);
+  lua_setfield(L, -2, "secretbox_KEYBYTES");
+  lua_pushnumber(L,crypto_secretbox_NONCEBYTES);
+  lua_setfield(L, -2, "secretbox_NONCEBYTES");
+  lua_pushnumber(L,crypto_secretbox_PREFIXBYTES);
+  lua_setfield(L, -2, "secretbox_PREFIXBYTES");
+  lua_pushnumber(L,crypto_stream_KEYBYTES);
+  lua_setfield(L, -2, "stream_KEYBYTES");
+  lua_pushnumber(L,crypto_stream_NONCEBYTES);
+  lua_setfield(L, -2, "stream_NONCEBYTES");
+  lua_pushnumber(L,crypto_onetimeauth_KEYBYTES);
+  lua_setfield(L, -2, "onetimeauth_KEYBYTES");
+  lua_pushnumber(L,crypto_onetimeauth_BYTES);
+  lua_setfield(L, -2, "onetimeauth_BYTES");
+  lua_pushnumber(L,crypto_hash_BYTES);
+  lua_setfield(L, -2, "hash_BYTES");
   return 1;
 }
