@@ -416,6 +416,14 @@
 		3C962AC421992FF0002B91E7 /* lua_language.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua_language.cpp; sourceTree = "<group>"; };
 		3C962AD721993203002B91E7 /* languageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = languageUtil.h; sourceTree = "<group>"; };
 		3C962AD821993203002B91E7 /* languageUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = languageUtil.mm; sourceTree = "<group>"; };
+		49B9E74323C2EC8D00640254 /* nacl-1.0.0-1.rockspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = "nacl-1.0.0-1.rockspec"; sourceTree = "<group>"; };
+		49B9E74423C2EC8D00640254 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		49B9E74523C2EC8D00640254 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		49B9E74723C2EC8D00640254 /* tweetnacl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tweetnacl.h; sourceTree = "<group>"; };
+		49B9E74823C2EC8D00640254 /* secretbox_easy.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = secretbox_easy.c; sourceTree = "<group>"; };
+		49B9E74923C2EC8D00640254 /* lua_nacl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lua_nacl.c; sourceTree = "<group>"; };
+		49B9E74A23C2EC8D00640254 /* tweetnacl.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tweetnacl.c; sourceTree = "<group>"; };
+		49B9E74B23C2EC8D00640254 /* devurandom.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = devurandom.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -626,6 +634,7 @@
 		2883ADFD20B5457A005E1F54 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				49B9E74223C2EC8D00640254 /* lua-nacl */,
 				3C85515C21B00DBA00860F2A /* debug */,
 				3C85517021B00DBA00860F2A /* luasocket */,
 				3C962AC221992FF0002B91E7 /* language */,
@@ -851,6 +860,29 @@
 				3C962AC421992FF0002B91E7 /* lua_language.cpp */,
 			);
 			path = language;
+			sourceTree = "<group>";
+		};
+		49B9E74223C2EC8D00640254 /* lua-nacl */ = {
+			isa = PBXGroup;
+			children = (
+				49B9E74323C2EC8D00640254 /* nacl-1.0.0-1.rockspec */,
+				49B9E74423C2EC8D00640254 /* README.md */,
+				49B9E74523C2EC8D00640254 /* .gitignore */,
+				49B9E74623C2EC8D00640254 /* src */,
+			);
+			path = "lua-nacl";
+			sourceTree = "<group>";
+		};
+		49B9E74623C2EC8D00640254 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				49B9E74723C2EC8D00640254 /* tweetnacl.h */,
+				49B9E74823C2EC8D00640254 /* secretbox_easy.c */,
+				49B9E74923C2EC8D00640254 /* lua_nacl.c */,
+				49B9E74A23C2EC8D00640254 /* tweetnacl.c */,
+				49B9E74B23C2EC8D00640254 /* devurandom.c */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
