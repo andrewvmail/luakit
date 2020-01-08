@@ -94,6 +94,11 @@ _weatherManager.parseWeathers = function (responseStr,callback)
 end
 
 _weatherManager.loadWeather = function (callback)
+
+	package.loaded["ssl.core"]["SOCKET_INVALID"] = -1.0 -- TODO: fix this in C
+	local https = require("ssl.https")
+	local body, code, headers, status = https.request("https://google.com")
+	print(code, headers)
   
     local http = require "socket.http"
     local res, code, headers, status = http.request([[http://wttr.in/vancouver]])

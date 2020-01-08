@@ -5,6 +5,11 @@ extern "C" {
 #include "lualib.h"
 #include "lsqlite3.h"
 #include "lua_nacl.h"
+#include "context.h"
+#include "../../../../../../LuaKitProject/src/Projects/extensions/luasec-master/src/ssl.h"
+#include "../../../../../../LuaKitProject/src/Projects/extensions/luasec-master/src/x509.h"
+#include "../../../../../../LuaKitProject/src/Projects/extensions/luasec-master/src/config.h"
+#include "../../../../../../LuaKitProject/src/Projects/extensions/luasec-master/src/luasec_scripts.h"
 #include "lua_cjson.h"
 #include "mobdebug.h"
 #ifdef __cplusplus
@@ -273,6 +278,11 @@ extern int luaInit(lua_State* L)
     luaopen_cjson(L);
     luaopen_cjson_safe(L);
     luaopen_nacl(L);
+    luaopen_ssl_core(L);
+    luaopen_ssl_context(L);
+    luaopen_ssl_x509(L);
+    luaopen_ssl_config(L);
+    luaopen_luasec_scripts(L);
     luaopen_async_socket(L);
     luaopen_notification(L);
     addLuaLoader(L,luakit_loader);

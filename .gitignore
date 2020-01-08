@@ -8,3 +8,5 @@ LuaKitProject/src/Projects/jni/obj
 generateDebugRFile
 fileChanges
 fileHashes
+**/build/
+**/*.lua

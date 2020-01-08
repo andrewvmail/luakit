@@ -349,3 +349,17 @@ More
 -----------------------------
 
 Any questions? Send an email to williamwen1986@gmail.com
+
+Modification to original lib
+-----------------------------
+
+Build OpenSSl into the project
+```
+git clone https://github.com/x2on/OpenSSL-for-iPhone ./LuaKitProject/src/Projects/.
+cd ./LuaKitProject/src/Projects/OpenSSL-for-iPhone
+./build-libssl.sh
+```
+ Added: 
+- sqlcipher
+- lua-nacl
+- luasec
