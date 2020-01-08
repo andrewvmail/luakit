@@ -235,9 +235,7 @@ static const char *lua_luasec_ssl ={"--\n"
   "   end\n"
   "   local s, msg = core.create(ctx)\n"
   "   if s then\n"
-  "print(core, s, sock)\n"
   "      core.setfd(s, sock:getfd())\n"
-  "print(core.SOCKET_INVALID)\n"
   "      sock:setfd(core.SOCKET_INVALID)\n"
   "      registry[s] = ctx\n"
   "      return s\n"
@@ -388,7 +386,6 @@ static const char *lua_luasec_https ={"--\n"
   "      end\n"
   "      -- Replace TCP's connection function\n"
   "      function conn:connect(host, port)\n"
-  "print(host, port, params)\n"
   "         try(self.sock:connect(host, port))\n"
   "         self.sock = try(ssl.wrap(self.sock, params))\n"
   "         self.sock:sni(host)\n"
@@ -466,16 +463,11 @@ static luaL_Reg luasec_scripts_modules[] = {
 
 void luaopen_luasec_scripts(void* L)
 {
-  // printf("111:\n");
-
-
   luaL_Reg* lib = luasec_scripts_modules;
     lua_getglobal(L, "package");
     lua_getfield(L, -1, "preload");
     for (; lib->func; lib++)
     {
-      // printf("2222:\n");
-      // printf(lib->name);
         lib->func(L);
         lua_setfield(L, -2, lib->name);
     }
