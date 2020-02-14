@@ -49,6 +49,9 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/./ \
                     $(LOCAL_PATH)/jni \
                     $(LOCAL_PATH)/ \
                     $(LOCAL_PATH)/lua-5.1.5/lua/tools \
+                    $(LOCAL_PATH)/extensions/lua-nacl/src \
+                    $(LOCAL_PATH)/extensions/luasec-master/src \
+                    $(LOCAL_PATH)/extensions/luasocket \
 
 
 LOCAL_STATIC_LIBRARIES += curl \

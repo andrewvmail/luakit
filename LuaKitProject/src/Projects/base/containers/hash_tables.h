@@ -49,8 +49,8 @@
 #endif
 
 #if defined(OS_ANDROID)
-#include <hash_map>
-#include <hash_set>
+#include <ext/hash_map>
+#include <ext/hash_set>
 #else
 #include <ext/hash_map>
 #include <ext/hash_set>

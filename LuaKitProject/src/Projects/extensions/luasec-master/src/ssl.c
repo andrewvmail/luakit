@@ -23,10 +23,19 @@
 #include <lua.h>
 #include <lauxlib.h>
 
+
+#if defined(OS_ANDROID)
+#include <io.h>
+#include <buffer.h>
+#include <timeout.h>
+#include <socket.h>
+#else
 #include <luasocket/io.h>
 #include <luasocket/buffer.h>
 #include <luasocket/timeout.h>
 #include <luasocket/socket.h>
+#endif
+
 
 #include "x509.h"
 #include "context.h"
