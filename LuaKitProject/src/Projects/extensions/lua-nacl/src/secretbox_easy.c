@@ -1,6 +1,10 @@
-#if defined(OS_ANDROID)
-#include "my_linux_types.h"
-#endif
+#define FOR(i,n) for (i = 0;i < n;++i)
+#define sv static void
+
+typedef unsigned char u8;
+typedef char i8;
+typedef unsigned long long u64;
+typedef long long i64;
 
 static const u8 sigma[16] = "expand 32-byte k";
 
@@ -9,8 +13,8 @@ static int crypto_stream_salsa20_xor_skip(u8 *c, const u8 *m, u64 b, const u8 *n
   u8 z[16], x[64];
   u64 u, i;
   if (!b) return 0;
-  FOR(i, 16); z[i] = 0;
-  FOR(i, 8); z[i] = n[i];
+  FOR(i, 16) z[i] = 0;
+  FOR(i, 8) z[i] = n[i];
   while (skip >= 64) {
     u = 1;
     for (i = 8; i < 16; ++i) {
@@ -39,7 +43,7 @@ static int crypto_stream_salsa20_xor_skip(u8 *c, const u8 *m, u64 b, const u8 *n
   }
   while (b >= 64) {
     crypto_core_salsa20(x, z, k, sigma);
-    FOR(i, 64); c[i] = (m ? m[i] : 0) ^ x[i];
+    FOR(i, 64) c[i] = (m ? m[i] : 0) ^ x[i];
     u = 1;
     for (i = 8; i < 16; ++i) {
       u += (u64) z[i];
@@ -52,7 +56,7 @@ static int crypto_stream_salsa20_xor_skip(u8 *c, const u8 *m, u64 b, const u8 *n
   }
   if (b) {
     crypto_core_salsa20(x, z, k, sigma);
-    FOR(i, b); c[i] = (m ? m[i] : 0) ^ x[i];
+    FOR(i, b) c[i] = (m ? m[i] : 0) ^ x[i];
   }
   return 0;
 }
