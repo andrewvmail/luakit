@@ -223,6 +223,70 @@ JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljav
     return ret;
 }
 
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2_6
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5, jobject p6, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        object_fromjava(L, env ,p1);
+//        object_fromjava(L, env ,p2);
+//        object_fromjava(L, env ,p3);
+//        object_fromjava(L, env ,p4);
+//        object_fromjava(L, env ,p5);
+//        int err = lua_pcall(L, 5, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+//
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2_7
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5, jobject p6, jobject p7, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    lua_State * L = BusinessThread::GetCurrentThreadLuaState();
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        object_fromjava(L, env ,p1);
+//        object_fromjava(L, env ,p2);
+//        object_fromjava(L, env ,p3);
+//        object_fromjava(L, env ,p4);
+//        object_fromjava(L, env ,p5);
+//        int err = lua_pcall(L, 5, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+
 jint JNI_OnLoad(JavaVM* jvm, void* reserved) {
     JniEnvWrapper env(jvm);
     JNIEnv * envp = env;
@@ -238,6 +302,251 @@ jint JNI_OnLoad(JavaVM* jvm, void* reserved) {
 
     LOG(INFO) << "JNI_Onload end";
     return JNI_VERSION_1_6;
+}
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        int err = lua_pcall(L, 0, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+//
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        object_fromjava(L, env ,p1);
+//        int err = lua_pcall(L, 1, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+//
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1, jobject p2, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        object_fromjava(L, env ,p1);
+//        object_fromjava(L, env ,p2);
+//        int err = lua_pcall(L, 2, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+//
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName, jobject p1, jobject p2, jobject p3, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        object_fromjava(L, env ,p1);
+//        object_fromjava(L, env ,p2);
+//        object_fromjava(L, env ,p3);
+//        int err = lua_pcall(L, 3, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+//
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName, jobject p1,jobject p2,jobject p3,jobject p4, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        object_fromjava(L, env ,p1);
+//        object_fromjava(L, env ,p2);
+//        object_fromjava(L, env ,p3);
+//        object_fromjava(L, env ,p4);
+//        int err = lua_pcall(L, 4, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+//
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        object_fromjava(L, env ,p1);
+//        object_fromjava(L, env ,p2);
+//        object_fromjava(L, env ,p3);
+//        object_fromjava(L, env ,p4);
+//        object_fromjava(L, env ,p5);
+//        int err = lua_pcall(L, 5, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+//
+//JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2_6
+//  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5, jobject p6, lua_State * L)
+//{
+//    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+//    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+//    BEGIN_STACK_MODIFY(L)
+//    pushLuaModule(module);
+//    lua_pushstring(L, method);
+//    lua_rawget(L, -2);
+//    jobject ret = NULL;
+//    if (lua_isfunction(L, -1)) {
+//        object_fromjava(L, env ,p1);
+//        object_fromjava(L, env ,p2);
+//        object_fromjava(L, env ,p3);
+//        object_fromjava(L, env ,p4);
+//        object_fromjava(L, env ,p5);
+//        int err = lua_pcall(L, 5, 1, 0);
+//        if (err != 0) {
+//            luaError(L,"callLuaFunction call error");
+//        } else {
+//            ret = object_copyToJava(L, env,-1);
+//        }
+//    } else {
+//         luaError(L,"callLuaFunction call error no such function");
+//    }
+//    END_STACK_MODIFY(L, 0)
+//    env->ReleaseStringUTFChars((jstring)moduleName, module);
+//    env->ReleaseStringUTFChars((jstring)methodName, method);
+//    return ret;
+//}
+
+JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2_7
+  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5, jobject p6, jobject p7, lua_State * L)
+{
+    const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
+    const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
+    BEGIN_STACK_MODIFY(L)
+    pushLuaModule(module);
+    lua_pushstring(L, method);
+    lua_rawget(L, -2);
+    jobject ret = NULL;
+    if (lua_isfunction(L, -1)) {
+        object_fromjava(L, env ,p1);
+        object_fromjava(L, env ,p2);
+        object_fromjava(L, env ,p3);
+        object_fromjava(L, env ,p4);
+        object_fromjava(L, env ,p5);
+        int err = lua_pcall(L, 5, 1, 0);
+        if (err != 0) {
+            luaError(L,"callLuaFunction call error");
+        } else {
+            ret = object_copyToJava(L, env,-1);
+        }
+    } else {
+         luaError(L,"callLuaFunction call error no such function");
+    }
+    END_STACK_MODIFY(L, 0)
+    env->ReleaseStringUTFChars((jstring)moduleName, module);
+    env->ReleaseStringUTFChars((jstring)methodName, method);
+    return ret;
 }
 
 #ifdef __cplusplus
