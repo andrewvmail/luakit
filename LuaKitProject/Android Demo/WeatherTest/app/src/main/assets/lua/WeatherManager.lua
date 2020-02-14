@@ -2,6 +2,39 @@ local _weatherManager = {}
 local Table = require('orm.class.table')
 local _weatherTable = Table("weather")
 
+local sqlite3 = require("sqlite3")
+local db = sqlite3.open(BASE_DOCUMENT_PATH .. "/test.db")
+print("***" .. BASE_DOCUMENT_PATH)
+print("***" .. BASE_DOCUMENT_PATH)
+print("***" .. BASE_DOCUMENT_PATH)
+db:exec("PRAGMA key = '" .. "ABC" .. "';")
+db:exec("PRAGMA cipher_plaintext_header_size = 32;")
+db:exec("PRAGMA cipher_salt = \"x'" .. "01010101010101010101010101010101".. "'\";")
+db:exec("PRAGMA journal_mode=WAL;")
+
+local https = require("ssl.https")
+package.loaded["ssl.core"]["SOCKET_INVALID"] = -1.0
+local data = ""
+
+local function collect(chunk)
+	if chunk ~= nil then
+		data = data .. chunk
+	end
+	return true
+end
+----local cjson = require("cjson") -- global injected from c
+local res, code, response_headers, status = https.request {
+	headers =
+	{
+		["Content-Type"] = "application/json",
+	},
+	url = "https://jsonplaceholder.typicode.com/todos/1",
+	method = "GET",
+	sink = collect
+
+}
+print("result: ", data)
+
 local weatherDict = {
 }
 weatherDict["10"] = "暴雨"
@@ -63,7 +96,7 @@ flDict["8"] = "10-11级"
 flDict["9"] = "11-12级"
 
 _weatherManager.getWeather = function ()
-	return _weatherTable.get:all():getPureData()
+--	return _weatherTable.get:all():getPureData()
 end
 
 _weatherManager.parseWeathers = function (responseStr,callback)
@@ -93,20 +126,22 @@ _weatherManager.parseWeathers = function (responseStr,callback)
 end
 
 _weatherManager.loadWeather = function (callback)
-	lua_http.request({ url  = "http://mobile.weather.com.cn/data/forecast/101010100.html?_=1381891660081",
-		onResponse = function (response)
-			if response.http_code ~= 200 then
-				if callback then
-					callback(nil)
-				end
-			else
-				lua_thread.postToThread(BusinessThreadLOGIC,"WeatherManager","parseWeathers",response.response,function(data)
-					if callback then
-						callback(data)
-					end
-				end)
-			end
-		end})
+	callback(nil)
+	return
+--	lua_http.request({ url  = "http://mobile.weather.com.cn/data/forecast/101010100.html?_=1381891660081",
+--		onResponse = function (response)
+--			if response.http_code ~= 200 then
+--				if callback then
+--					callback(nil)
+--				end
+--			else
+--				lua_thread.postToThread(BusinessThreadLOGIC,"WeatherManager","parseWeathers",response.response,function(data)
+--					if callback then
+--						callback(data)
+--					end
+--				end)
+--			end
+--		end})
 end
 
 return _weatherManager
