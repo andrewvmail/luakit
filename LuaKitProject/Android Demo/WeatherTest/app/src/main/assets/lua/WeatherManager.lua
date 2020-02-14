@@ -4,9 +4,7 @@ local _weatherTable = Table("weather")
 
 local sqlite3 = require("sqlite3")
 local db = sqlite3.open(BASE_DOCUMENT_PATH .. "/test.db")
-print("***" .. BASE_DOCUMENT_PATH)
-print("***" .. BASE_DOCUMENT_PATH)
-print("***" .. BASE_DOCUMENT_PATH)
+
 db:exec("PRAGMA key = '" .. "ABC" .. "';")
 db:exec("PRAGMA cipher_plaintext_header_size = 32;")
 db:exec("PRAGMA cipher_salt = \"x'" .. "01010101010101010101010101010101".. "'\";")
@@ -34,6 +32,52 @@ local res, code, response_headers, status = https.request {
 
 }
 print("result: ", data)
+
+
+
+local content
+local file, reason, code = io.open(BASE_DOCUMENT_PATH .. "/test.db", "r")
+if not file then return end
+content = file:read "*a" -- *a or *all reads the whole file
+print(content)
+
+
+local catch = function (what)
+	return what[1]
+end
+
+local try = function (what)
+	status, result = pcall(what[1])
+	if not status then
+		what[2](result)
+	end
+	return result
+end
+
+local base64 = require("base64")
+local nacl = require("nacl")
+
+local bytes = { string.byte("bztJd9f9BarpgsGZd6VZXMg7tIo=", 1, -1) }
+print("bytes", string.byte("bztJd9f9BarpgsGZd6VZXMg7tIo=", 1, -1))
+local bd = base64.decode("X7hNSdgX728hT/XrKh8r6IL1UWd+ttJ/qnU4NDfjOTE=")
+print("bd", bd)
+
+try {
+	function()
+		local text = nacl.box_open(base64.decode("bztJd9f9BarpgsGZd6VZXMg7tIo="),
+			base64.decode("rKn41NfWdKDgQRdAGqhZrp7Uyb/lIucE"),
+			base64.decode("X7hNSdgX728hT/XrKh8r6IL1UWd+ttJ/qnU4NDfjOTE="),
+			base64.decode("71MarZiVVeIrUc64tbeQOaHB+/Xnit3khj6wVZ/5pJc="))
+		print(text)
+	end,
+
+	catch {
+		function(error)
+			print('caught error: ' .. "decryption error")
+		end
+	}
+}
+
 
 local weatherDict = {
 }
