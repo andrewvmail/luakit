@@ -204,11 +204,9 @@ JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljav
 }
 
 // signature changed
-JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2
-  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5,jobject p6, jobject p7)
+JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2
+  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5)
 {
-    LOG(INFO) << "func start";
-
     const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
     const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
 
@@ -227,9 +225,7 @@ JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljav
         object_fromjava(L, env ,p3);
         object_fromjava(L, env ,p4);
         object_fromjava(L, env ,p5);
-        object_fromjava(L, env ,p6);
-        object_fromjava(L, env ,p7);
-        int err = lua_pcall(L, 7, 1, 0);
+        int err = lua_pcall(L, 5, 1, 0);
         if (err != 0) {
             luaError(L,"callLuaFunction call error");
         } else {

@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         LuaHelper.startLuaKit(this);
-        HashMap<String, String> ret =  (HashMap<String, String>) LuaHelper.callLuaFunction("WeatherManager","getWeather", "1", "2", "3", "4", "5", "6", "7");
+        HashMap<String, String> ret =  (HashMap<String, String>) LuaHelper.callLuaFunction("WeatherManager","getWeather", "1", "2", "3", "4", "5");
         Set<String> keys = ret.keySet();  //get all keys
 //        System.out.print(ret);
 //        System.out.print(ret);
