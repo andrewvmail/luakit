@@ -3,6 +3,7 @@ package luakit.com.weathertest;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,9 @@ import com.common.luakit.ILuaCallback;
 import com.common.luakit.LuaHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     private  MyAdapter adapter;
@@ -23,24 +26,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         LuaHelper.startLuaKit(this);
-        ArrayList<Object> ret =  (ArrayList<Object>) LuaHelper.callLuaFunction("WeatherManager","getWeather");
-        ILuaCallback callback = new ILuaCallback() {
-            @Override
-            public void onResult(Object o) {
-                ArrayList<Object> ret = (ArrayList<Object>)o;
-                if(ret != null) {
-                    adapter.source = ret.toArray();
-                    adapter.notifyDataSetChanged();
-                }
-            }
-        };
-        LuaHelper.callLuaFunction("WeatherManager","loadWeather", callback);
-        ListView lv=(ListView) findViewById(R.id.lv);
-        adapter = new MyAdapter(this);
-        if(ret != null){
-            adapter.source = ret.toArray();
+        HashMap<String, String> ret =  (HashMap<String, String>) LuaHelper.callLuaFunction("WeatherManager","getWeather", "1", "2", "3", "4", "5", "6", "7");
+        Set<String> keys = ret.keySet();  //get all keys
+//        System.out.print(ret);
+//        System.out.print(ret);
+//        System.out.print(ret);
+//        System.out.print(ret);
+//        System.out.print(ret);
+//        System.out.println(ArrayUtils.toString(ret));
+        for(String i: keys)
+        {
+            System.out.println(ret.get(i));
         }
-        lv.setAdapter(adapter);
+//        ILuaCallback callback = new ILuaCallback() {
+//            @Override
+//            public void onResult(Object o) {
+//                ArrayList<Object> ret = (ArrayList<Object>)o;
+//                if(ret != null) {
+//                    adapter.source = ret.toArray();
+//                    adapter.notifyDataSetChanged();
+//                }
+//            }
+//        };
+//        LuaHelper.callLuaFunction("WeatherManager","loadWeather", callback);
+//        ListView lv=(ListView) findViewById(R.id.lv);
+//        adapter = new MyAdapter(this);
+//        if(ret != null){
+//            adapter.source = ret.toArray();
+//        }
+//        lv.setAdapter(adapter);
     }
 
     private class MyAdapter extends BaseAdapter {
