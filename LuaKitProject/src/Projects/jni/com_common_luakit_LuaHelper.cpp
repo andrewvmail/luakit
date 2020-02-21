@@ -204,16 +204,18 @@ JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljav
 }
 
 // signature changed
-JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2
-  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5)
+JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Landroid_content_Context_2
+  (JNIEnv *env, jclass, jstring moduleName, jstring methodName,jobject p1,jobject p2,jobject p3,jobject p4,jobject p5, jobject context)
 {
     const char* module = env->GetStringUTFChars((jstring)moduleName, NULL);
     const char* method = env->GetStringUTFChars((jstring)methodName, NULL);
 
-    lua_State* L = luaL_newstate();
-    luaInit(L);
+    base::android::InitApplicationContext(env, base::android::ScopedJavaLocalRef<jobject>(env, context));
 
+    lua_State * L;
+    L = luaL_newstate();
     BEGIN_STACK_MODIFY(L)
+    luaInit(L);
     pushLuaModuleL(module, L);
     lua_pushstring(L, method);
     lua_rawget(L, -2);

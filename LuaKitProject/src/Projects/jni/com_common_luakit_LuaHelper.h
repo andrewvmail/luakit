@@ -26,8 +26,8 @@ JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljav
 JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2
   (JNIEnv *, jclass, jstring, jstring ,jobject ,jobject ,jobject ,jobject);
 
-JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2
-  (JNIEnv *, jclass, jstring, jstring ,jobject ,jobject ,jobject ,jobject ,jobject);
+JNIEXPORT jobject JNICALL Java_com_common_luakit_LuaHelper_callLuaFunction__Ljava_lang_String_2Ljava_lang_String_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Ljava_lang_Object_2Landroid_content_Context_2
+  (JNIEnv *, jclass, jstring, jstring ,jobject ,jobject ,jobject ,jobject ,jobject, jobject);
 
 
 #ifdef __cplusplus
