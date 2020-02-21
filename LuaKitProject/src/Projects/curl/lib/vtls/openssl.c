@@ -69,12 +69,7 @@
 #include <openssl/ocsp.h>
 #endif
 
-#if (OPENSSL_VERSION_NUMBER >= 0x0090800fL) && /* 0.9.8 or later */     \
-  !defined(OPENSSL_NO_ENGINE)
-#define USE_OPENSSL_ENGINE
 #include <openssl/engine.h>
-#endif
-
 #include "warnless.h"
 #include "non-ascii.h" /* for Curl_convert_from_utf8 prototype */
 
