@@ -22,7 +22,7 @@ public class LuaHelper {
 
     public static native Object callLuaFunction(String moduleName, String methodName, Object p1, Object p2, Object p3, Object p4);
 
-    public static native Object callLuaFunction(String moduleName, String methodName, Object p1, Object p2, Object p3, Object p4, Object p5);
+    public static native Object callLuaFunction(String moduleName, String methodName, Object p1, Object p2, Object p3, Object p4, Object p5, Context c);
 
     static { System.loadLibrary("luaFramework");}
 
