@@ -32,3 +32,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.2.2'
     implementation project(':lib_chromium')
 }
+tasks.register("prepareKotlinBuildScriptModel"){}
