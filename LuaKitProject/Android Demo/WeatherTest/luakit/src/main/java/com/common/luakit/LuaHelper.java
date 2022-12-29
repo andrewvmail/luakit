@@ -22,6 +22,7 @@ public class LuaHelper {
 
     public static native Object callLuaFunction(String moduleName, String methodName, Object p1, Object p2, Object p3, Object p4);
 
+    // WE USE THIS ONE
     public static native Object callLuaFunction(String moduleName, String methodName, Object p1, Object p2, Object p3, Object p4, Object p5, Context c);
 
     static { System.loadLibrary("luaFramework");}
@@ -36,7 +37,8 @@ public class LuaHelper {
         toFolder.mkdir();
         copyFolderFromAssets(c, "lua",toPath);
         Log.d("copyfile", "copyFolderFromAssets");
-        startLuaKitNative(c);
+        // THIS IS DISABLED
+        // startLuaKitNative(c);
     }
 
     private static boolean deleteDirection(File dir) {
